@@ -16,5 +16,18 @@ app.get('/medicos', (req, res) => {
     })
 })
 
+app.get('/pacientes', (req, res) => {
+        const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'rodrigo',
+        database: 'hospital',
+        password: '1234'
+        })
+    connection.query('SELECT * FROM tb_paciente', (err, results, fields) =>
+    {
+        res.json(results)
+    })
+})
+
 const porta = 3000
 app.listen(porta, () => console.log(`Executando. Porta ${porta}`))
